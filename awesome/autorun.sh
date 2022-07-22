@@ -6,8 +6,8 @@ run() {
     "$@"&
   fi
 }
-run volctl
-run picom -f
+run volctl &
+run picom -f &
 run xrandr -s 1920x1200
 
 
