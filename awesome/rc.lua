@@ -51,8 +51,8 @@ end
 beautiful.init("~/.config/awesome/themes/xresources/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "alacritty"
-editor = os.getenv("EDITOR") or "vim"
+terminal = "alacritty -e zsh"
+editor = os.getenv("EDITOR") or "geany"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
@@ -207,7 +207,7 @@ awful.screen.connect_for_each_screen(function(s)
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            -- mylauncher,
+            mylauncher,
             s.mytaglist,
             s.mypromptbox,
         },

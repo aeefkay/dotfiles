@@ -14,7 +14,7 @@ local themes_path = gfs.get_themes_dir()
 local theme = dofile(themes_path.."default/theme.lua")
 -- load vector assets' generators for this theme
 
-theme.font          = "sans 8"
+theme.font          = "JetBrainsMono Nerd Font Mono 8"
 
 theme.bg_normal     = xrdb.background
 theme.bg_focus      = xrdb.color12
@@ -27,7 +27,7 @@ theme.fg_focus      = theme.bg_normal
 theme.fg_urgent     = theme.bg_normal
 theme.fg_minimize   = theme.bg_normal
 
-theme.useless_gap   = dpi(1)
+theme.useless_gap   = dpi(6)
 theme.border_width  = dpi(1)
 theme.border_normal = xrdb.color0
 theme.border_focus  = theme.bg_focus
@@ -132,6 +132,8 @@ end
 
 -- custom image as wallpaper
 -- theme.wallpaper = "~/wallpaper/Wallpaper-16-9/7.png"
+
+
 return theme
 
 -- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
