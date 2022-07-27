@@ -20,9 +20,7 @@ require("awful.hotkeys_popup.keys")
 xdg_menu = require("archmenu")
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 
--- {{{ Error handling
--- Check if awesome encountered an error during startup and fell back to
--- another config (This code will only ever execute for the fallback config)
+
 if awesome.startup_errors then
     naughty.notify({ preset = naughty.config.presets.critical,
                      title = "Oops, there were errors during startup!",
@@ -52,7 +50,8 @@ beautiful.init("~/.config/awesome/themes/xresources/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty -e zsh"
-editor = os.getenv("EDITOR") or "geany"
+editor = "geany"
+--os.getenv("EDITOR") or "geany"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
@@ -88,7 +87,8 @@ awful.layout.layouts = {
 myawesomemenu = {
    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
    { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
+--   { "edit config", editor_cmd .. " " .. awesome.conffile },
+   { "edit config", "geany .config/awesome/rc.lua" },
    { "restart", awesome.restart },
    { "quit", function() awesome.quit() end },
 }
@@ -100,12 +100,12 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
                         })
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = mymainmenu })
+                                     menu = mymainmenu,})
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
--- }}}
 
+-- }}}
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
 
@@ -198,16 +198,17 @@ awful.screen.connect_for_each_screen(function(s)
         filter  = awful.widget.tasklist.filter.currenttags,
         buttons = tasklist_buttons
     }
-
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s })
+    s.mywibox = awful.wibar({ position = "top", screen = s,height = 10, bg = "#00000000",})
+	s.mywibox = awful.wibox({ screen = s, height = 32, margins  = 24, width = 1890})
+
 
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            mylauncher,
+            --mylauncher,
             s.mytaglist,
             s.mypromptbox,
         },
@@ -219,6 +220,7 @@ awful.screen.connect_for_each_screen(function(s)
             s.mylayoutbox,
         },
     }
+
 end)
 -- }}}
 
@@ -351,7 +353,9 @@ globalkeys = gears.table.join(
               end,
               {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
+--    awful.key({ modkey }, "p", function() menubar.show() end,
+	awful.key({ modkey }, "p", function() awful.spawn('rofi -show drun') end,
+
               {description = "show the menubar", group = "launcher"})
 )
 
