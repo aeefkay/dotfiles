@@ -49,7 +49,7 @@ end
 beautiful.init("~/.config/awesome/themes/xresources/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "alacritty -e zsh"
+terminal = "st -e zsh"
 editor = "geany"
 --os.getenv("EDITOR") or "geany"
 editor_cmd = terminal .. " -e " .. editor
@@ -73,7 +73,7 @@ awful.layout.layouts = {
     -- awful.layout.suit.spiral,
     -- awful.layout.suit.spiral.dwindle,
     -- awful.layout.suit.max,
-    -- awful.layout.suit.max.fullscreen,
+    awful.layout.suit.max.fullscreen,
     -- awful.layout.suit.magnifier,
     -- awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
@@ -208,7 +208,7 @@ awful.screen.connect_for_each_screen(function(s)
     
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s,height = 10, bg = "#00000000",})
-	s.mywibox = awful.wibar({ position = "top", screen = s,height = 32, margins  = 20, width = 1895, opacity = 0.9, })
+	s.mywibox = awful.wibar({ position = "top", screen = s,height = 32, margins  = 20, width = 1895, opacity = 0.9,})
 
 
     -- Add widgets to the wibox
