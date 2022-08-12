@@ -207,8 +207,8 @@ awful.screen.connect_for_each_screen(function(s)
     }
     
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s,height = 10, bg = "#00000000",})
-	s.mywibox = awful.wibar({ position = "top", screen = s,height = 32, margins  = 20, width = 1895, opacity = 0.9,})
+--    s.mywibox = awful.wibar({ position = "top", screen = s,height = 10, bg = "#00000000",})
+	s.mywibox = awful.wibar({ position = "top", screen = s,height = 32, margins  = 20, opacity = 0.9,})
 
 
     -- Add widgets to the wibox
@@ -541,6 +541,38 @@ awful.rules.rules = {
     --   properties = { screen = 1, tag = "2" } },
 }
 -- }}}
+-- Toggle titlebar on or off depending on s. Creates titlebar if it doesn't exist
+local function setTitlebar(client, s)
+    if s then
+        if client.titlebar == nil then
+            client:emit_signal("request::titlebars", "rules", {})
+        end
+        awful.titlebar.show(client)
+    else 
+        awful.titlebar.hide(client)
+    end
+end
+--Toggle titlebar on floating status change
+client.connect_signal("property::floating", function(c)
+    setTitlebar(c, c.floating)
+end)
+-- Hook called when a client spawns
+client.connect_signal("manage", function(c) 
+    setTitlebar(c, c.floating or c.first_tag.layout == awful.layout.suit.floating)
+end)
+-- Show titlebars on tags with the floating layout
+tag.connect_signal("property::layout", function(t)
+    -- New to Lua ? 
+    -- pairs iterates on the table and return a key value pair
+    -- I don't need the key here, so I put _ to ignore it
+    for _, c in pairs(t:clients()) do
+        if t.layout == awful.layout.suit.floating then
+            setTitlebar(c, true)
+        else
+            setTitlebar(c, false)
+        end
+    end
+end)
 
 -- {{{ Signals
 -- Signal function to execute when a new client appears.

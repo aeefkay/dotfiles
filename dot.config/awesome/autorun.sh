@@ -6,9 +6,10 @@ run() {
     "$@"&
   fi
 }
+run nitrogen --restore &
 run lxsession &
 run volumeicon &
 run picom -f &
-run xrandr -s 1920x1200
+run ~/.screenlayout/main.sh &
 
 
