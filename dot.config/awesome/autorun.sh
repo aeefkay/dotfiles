@@ -12,4 +12,3 @@ run volumeicon &
 run picom -f &
 run ~/.screenlayout/main.sh &
 
-

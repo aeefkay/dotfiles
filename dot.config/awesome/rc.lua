@@ -17,7 +17,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
-xdg_menu = require("archmenu")
+local freedesktop   = require("freedesktop")
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 
 
@@ -45,7 +45,6 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
--- beautiful.init(gears.filesystem.get_themes_dir() .. "xresources/theme.lua")
 beautiful.init("~/.config/awesome/themes/xresources/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
@@ -84,27 +83,29 @@ awful.layout.layouts = {
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
-myawesomemenu = {
-   { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-   { "manual", terminal .. " -e man awesome" },
---   { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "edit config", "geany .config/awesome/rc.lua" },
-   { "restart", awesome.restart },
-   { "quit", function() awesome.quit() end },
+local myawesomemenu = {
+    { "hotkeys", function() return false, hotkeys_popup.show_help end },
+    { "edit config", "st -e vim ~/.config/awesome/rc.lua" },
+    { "arandr", "arandr" },
+    { "restart", awesome.restart },
 }
-mymainmenu = awful.menu({ items = { {"awesome", myawesomemenu,},
--- beautiful.awesome_icon 
---                                    {"Applications", xdgmenu },
-                                    {"Accessories", Accessories},
-									{"Games", Games},
-									{"Graphics", Graphics},
-									{"Internet", Internet},
-									{"Programming", Programming},
-									{"Media", Media},
-									{"System Tools", System},
-                                    { "open terminal", terminal }
-                                  }
-                        })
+
+awful.util.mymainmenu = freedesktop.menu.build({
+    icon_size = beautiful.menu_height or 16,
+    before = {
+        { "Awesome", myawesomemenu, beautiful.awesome_icon },
+        --{ "Atom", "atom" },
+        -- other triads can be put here
+    },
+    after = {
+        { "Terminal", terminal },
+        { "Log out", function() awesome.quit() end },
+        { "Sleep", "systemctl suspend" },
+        { "Restart", "systemctl reboot" },
+        { "Exit", "systemctl poweroff" },
+        -- other triads can be put here
+    }
+})
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu,})
@@ -160,24 +161,7 @@ local tasklist_buttons = gears.table.join(
                                               awful.client.focus.byidx(-1)
                                           end))
 
-local function set_wallpaper(s)
-    -- Wallpaper
-    if beautiful.wallpaper then
-        local wallpaper = beautiful.wallpaper
-        -- If wallpaper is a function, call it with the screen
-        if type(wallpaper) == "function" then
-            wallpaper = wallpaper(s)
-        end
-        gears.wallpaper.maximized(wallpaper, s, true)
-    end
-end
-
--- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal("property::geometry", set_wallpaper)
-
 awful.screen.connect_for_each_screen(function(s)
-    -- Wallpaper
-    set_wallpaper(s)
 
     -- Each screen has its own tag table.
     awful.tag({ "dev", "doc", "www", "sys", "chat", "media", "etc"}, s, awful.layout.layouts[1])
@@ -210,7 +194,6 @@ awful.screen.connect_for_each_screen(function(s)
 --    s.mywibox = awful.wibar({ position = "top", screen = s,height = 10, bg = "#00000000",})
 	s.mywibox = awful.wibar({ position = "top", screen = s,height = 32, margins  = 20, opacity = 0.9,})
 
-
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
@@ -234,9 +217,12 @@ end)
 
 -- }}}
 
+
+-- }}}
+
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
+    awful.button({ }, 3, function () awful.util.mymainmenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
 ))
@@ -267,15 +253,6 @@ globalkeys = gears.table.join(
     ),
     awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
               {description = "show main menu", group = "awesome"}),
-
--- Media control
-   awful.key({ }, "XF86AudioRaiseVolume", function ()
-       awful.util.spawn("amixer set Master 9%+") end),
-   awful.key({ }, "XF86AudioLowerVolume", function ()
-       awful.util.spawn("amixer set Master 9%-") end),
-   awful.key({ }, "XF86AudioMute", function ()
-       awful.util.spawn("amixer sset Master toggle") end),
-
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
@@ -351,8 +328,6 @@ globalkeys = gears.table.join(
     -- Prompt
     awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),
-    awful.key({ modkey, "Shift"}, "x", function () awful.spawn.with_shell("~/.config/rofi/applets/applets/powermenu.sh") end,
-              {description = "run powermenu", group = "launcher"}),
     awful.key({ modkey }, "x",
               function ()
                   awful.prompt.run {
@@ -364,8 +339,8 @@ globalkeys = gears.table.join(
               end,
               {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
---    awful.key({ modkey }, "p", function() menubar.show() end,
-	awful.key({ modkey }, "p", function() awful.spawn.with_shell('~/.config/rofi/bin/launcher_colorful') end,
+    awful.key({ modkey }, "p", function() menubar.show() end,
+--	awful.key({ modkey }, "p", function() awful.spawn.with_shell('~/.config/rofi/bin/launcher_colorful') end,
 
               {description = "show the menubar", group = "launcher"})
 
@@ -532,15 +507,14 @@ awful.rules.rules = {
 
     -- Add titlebars to normal clients and dialogs
    
-    { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = false }
-    },
+ --   { rule_any = {type = { "normal", "dialog" }
+ --    }, properties = { titlebars_enabled = true }
+--    },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { screen = 1, tag = "2" } },
 }
--- }}}
 -- Toggle titlebar on or off depending on s. Creates titlebar if it doesn't exist
 local function setTitlebar(client, s)
     if s then
