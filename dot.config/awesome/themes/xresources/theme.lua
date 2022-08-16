@@ -14,7 +14,7 @@ local themes_path = gfs.get_themes_dir()
 local theme = dofile(themes_path.."default/theme.lua")
 -- load vector assets' generators for this theme
 
-theme.font          = "JetBrainsMono Nerd Font Mono 10"
+theme.font          = "JetBrainsMono Nerd Font Mono 12"
 
 theme.bg_normal     = xrdb.background
 theme.bg_focus      = xrdb.color12
@@ -27,7 +27,7 @@ theme.fg_focus      = theme.bg_normal
 theme.fg_urgent     = theme.bg_normal
 theme.fg_minimize   = theme.bg_normal
 
-theme.useless_gap   = dpi(3)
+theme.useless_gap   = dpi(6)
 theme.border_width  = dpi(1)
 theme.border_normal = xrdb.color0
 theme.border_focus  = theme.bg_focus
@@ -51,9 +51,9 @@ theme.tooltip_bg = theme.bg_normal
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
-theme.menu_submenu_icon = themes_path.."default/submenu.png"
-theme.menu_height = dpi(16)
-theme.menu_width  = dpi(100)
+-- theme.menu_submenu_icon = themes_path.."default/submenu.png"
+theme.menu_height = dpi(30)
+theme.menu_width  = dpi(200)
 
 -- You can add as many variables as
 -- you wish and access them by using
@@ -126,13 +126,6 @@ local wallpaper_alt_fg = xrdb.color12
 if not is_dark_bg then
     wallpaper_bg, wallpaper_fg = wallpaper_fg, wallpaper_bg
 end
--- automatic wallpaper
---theme.wallpaper = function(s)
---    return theme_assets.wallpaper(wallpaper_bg, wallpaper_fg, wallpaper_alt_fg, s)
---end
-
--- custom image as wallpaper
- theme.wallpaper = "~/wallpaper/Wallpaper-16-9/20.jpg"
 
 
 return theme
