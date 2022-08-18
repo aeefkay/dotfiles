@@ -27,7 +27,7 @@ SELECT="#101010ff"
 #SELECT="#f3f3f3ff"
 
 # accent colors
-COLORS=('#CAA9FA' '#CAA9FA' '#BA68C8' '#4DD0E1' '#00B19F' \
+COLORS=('#A85D5F' '#CAA9FA' '#BA68C8' '#4DD0E1' '#00B19F' \
 		'#FBC02D' '#E57C46' '#AC8476' '#6D8895' '#EC407A' '#B9C244' '#6C77BB')
 ACCENT="${COLORS[$(( 1  ))]}ff"
 
@@ -38,9 +38,9 @@ cat > $dir/colors.rasi <<- EOF
 	* {
 	  al:  $ALPHA;
 	  bg:  $BG;
-	  se:  $SELECT;
+	  se:  $BG;
 	  fg:  $FG;
-	  ac:  $ACCENT;
+	  ac:  #A85D5F;
 	}
 EOF
 
