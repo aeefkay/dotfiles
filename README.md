@@ -1,2 +1,13 @@
-# A very light and simple awesomewm config that uses the xresources file for its theming (Dracula by default). 
-Rofi is the only dependancy for this confg.
+# AFK's dotfiles
+Left and Awesome WM + misc. configs
+
+# AwesomeWM dependancies
+st
+Nitrogen 
+JetbrainsMono Nerd Font
+
+# LeftWM dependancies
+st
+Nitrogen
+Polybar
+Rofi
