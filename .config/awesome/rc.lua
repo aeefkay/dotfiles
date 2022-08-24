@@ -45,7 +45,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("~/.config/awesome/themes/xresources/theme.lua")
+beautiful.init("~/.config/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "st -e zsh"
@@ -67,12 +67,12 @@ awful.layout.layouts = {
     -- awful.layout.suit.tile.left,
     -- awful.layout.suit.tile.bottom,
     -- awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
+    -- awful.layout.suit.fair,
     -- awful.layout.suit.fair.horizontal,
     -- awful.layout.suit.spiral,
     -- awful.layout.suit.spiral.dwindle,
-    -- awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
+    awful.layout.suit.max,
+    -- awful.layout.suit.max.fullscreen,
     -- awful.layout.suit.magnifier,
     -- awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
@@ -164,7 +164,7 @@ local tasklist_buttons = gears.table.join(
 awful.screen.connect_for_each_screen(function(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "dev", "doc", "www", "sys", "chat", "media", "etc"}, s, awful.layout.layouts[1])
+    awful.tag({ "I", "II", "III", "IV", "V", "VI", "VII"}, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -192,7 +192,7 @@ awful.screen.connect_for_each_screen(function(s)
     
     -- Create the wibox
 --    s.mywibox = awful.wibar({ position = "top", screen = s,height = 10, bg = "#00000000",})
-	s.mywibox = awful.wibar({ position = "top", screen = s,height = 32, margins  = 20, opacity = 0.9,})
+	s.mywibox = awful.wibar({ position = "top", screen = s,height = 23, margins  = 20,})
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -339,8 +339,7 @@ globalkeys = gears.table.join(
               end,
               {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
---	awful.key({ modkey }, "p", function() awful.spawn.with_shell('~/.config/rofi/bin/launcher_colorful') end,
+	awful.key({ modkey }, "p", function() awful.spawn.with_shell('dmenu_run') end,
 
               {description = "show the menubar", group = "launcher"})
 
@@ -577,7 +576,7 @@ client.connect_signal("request::titlebars", function(c)
         end)
     )
 
-    awful.titlebar(c) : setup {
+    awful.titlebar(c, { size = 19, }) : setup {
         { -- Left
             awful.titlebar.widget.iconwidget(c),
             buttons = buttons,
