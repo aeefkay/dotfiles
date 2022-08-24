@@ -1,4 +1,4 @@
-! Dracula Xresources palette
+!! Dracula Xresources palette
 *.foreground: #F8F8F2
 *.background: #282A36
 *.color0:     #000000
@@ -18,28 +18,29 @@
 *.color7:     #BFBFBF
 *.color15:    #E6E6E6
 
-dwm.normbordercolor: #BD93F9
+!! dwm settings
+dwm.normbordercolor: #6B5297
 dwm.normbgcolor: #282A36
 dwm.normfgcolor: #F8F8F2
-dwm.selbordercolor: #CAA9FA
-dwm.selbgcolor: #BD93F9
+dwm.selbordercolor: #6B5297
+dwm.selbgcolor: #6B5297
 dwm.selfgcolor: #F8F8F2
 
+!! xterm settings
 xterm*faceName: monospace
 xterm*faceSize: 16
-!! URxvt Appearance
+
+!! URxvt settings
 URxvt.letterSpace: 0
 URxvt.lineSpace: 0
-URxvt.geometry: 92x24
-URxvt.internalBorder: 24
+URxvt.internalBorder: 5
 URxvt.cursorBlink: true
 URxvt.cursorUnderline: false
 URxvt.saveline: 2048
 URxvt.scrollBar: false
 URxvt.scrollBar_right: false
 URxvt.urgentOnBell: true
-URxvt.depth: 24
-URxvt.iso14755: false
-URxvt.font:  xft:JetBrainsMonoNerdFontMono:pixelsize=18
 URxvt.depth: 32
-URxvt.background: [75]#000000
+URxvt.iso14755: false
+URxvt.font:  xft:monospace:pixelsize=16
+URxvt.background: [85]#000000
