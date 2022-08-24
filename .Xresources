@@ -18,7 +18,15 @@
 *.color7:     #BFBFBF
 *.color15:    #E6E6E6
 
+dwm.normbordercolor: #BD93F9
+dwm.normbgcolor: #282A36
+dwm.normfgcolor: #F8F8F2
+dwm.selbordercolor: #CAA9FA
+dwm.selbgcolor: #BD93F9
+dwm.selfgcolor: #F8F8F2
 
+xterm*faceName: monospace
+xterm*faceSize: 16
 !! URxvt Appearance
 URxvt.letterSpace: 0
 URxvt.lineSpace: 0
