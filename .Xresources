@@ -26,7 +26,7 @@ dwm.selbordercolor: #6B5297
 dwm.selbgcolor: #6B5297
 dwm.selfgcolor: #F8F8F2
 
-!! dwm settings
+!! dmenu settings
 dmenu.normbordercolor: #6B5297
 dmenu.normbgcolor: #282A36
 dmenu.normfgcolor: #F8F8F2
