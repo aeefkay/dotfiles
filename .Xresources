@@ -26,6 +26,14 @@ dwm.selbordercolor: #6B5297
 dwm.selbgcolor: #6B5297
 dwm.selfgcolor: #F8F8F2
 
+!! dwm settings
+dmenu.normbordercolor: #6B5297
+dmenu.normbgcolor: #282A36
+dmenu.normfgcolor: #F8F8F2
+dmenu.selbordercolor: #6B5297
+dmenu.selbgcolor: #6B5297
+dmenu.selfgcolor: #F8F8F2
+
 !! xterm settings
 xterm*faceName: monospace
 xterm*faceSize: 16
