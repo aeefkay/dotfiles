@@ -53,6 +53,6 @@ exec volumeicon &
 exec slstatus &
 exec picom -f &
 exec lxsession &
-exec feh --bg-fill ~/wallpaper/Wallpaper-21-9/20.png ~/wallpaper/Wallpaper-9-16/20.png &
+exec feh --bg-fill ~/wallpaper/21-9/20.png ~/wallpaper/9-16/20.png &
 ~/.screenlayout/main.sh
 exec dwm
