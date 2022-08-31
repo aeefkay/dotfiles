@@ -48,7 +48,7 @@ end
 beautiful.init("~/.config/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "st -e zsh"
+terminal = "st"
 editor = "geany"
 --os.getenv("EDITOR") or "geany"
 editor_cmd = terminal .. " -e " .. editor
