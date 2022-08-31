@@ -6,9 +6,10 @@ run() {
     "$@"&
   fi
 }
-run nitrogen --restore &
+run ~/.screenlayout/main.sh &
+run feh --bg-fill ~/wallpaper/21-9/25.png &
 run lxsession &
 run volumeicon &
 run picom -f &
-run ~/.screenlayout/main.sh &
+
 
