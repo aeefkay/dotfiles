@@ -48,11 +48,10 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-
+~/.screenlayout/main.sh
 exec volumeicon & 
 exec slstatus &
 exec picom -f &
 exec lxsession &
 exec feh --bg-fill ~/wallpaper/21-9/20.png ~/wallpaper/9-16/20.png &
-~/.screenlayout/main.sh
 exec dwm
