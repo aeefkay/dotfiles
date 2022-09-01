@@ -45,7 +45,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("~/.config/awesome/themes/default/theme.lua")
+beautiful.init("~/.config/awesome/themes/xresources/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "st"
@@ -191,8 +191,8 @@ awful.screen.connect_for_each_screen(function(s)
     }
     
     -- Create the wibox
---    s.mywibox = awful.wibar({ position = "top", screen = s,height = 10, bg = "#00000000",})
-	s.mywibox = awful.wibar({ position = "top", screen = s,height = 23, margins  = 20,})
+
+	s.mywibox = awful.wibar({ position = "top", screen = s,height = 22,})
 
     -- Add widgets to the wibox
     s.mywibox:setup {
