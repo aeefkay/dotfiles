@@ -18,7 +18,7 @@
       #define c05 #D09339
       #define c14 #DA9561
       #define c16 #
-      #define c17 #
+      #define c17 #2D2D2D
 
       *.foreground:   fg
 	  *.background:   bg
@@ -48,9 +48,9 @@ dwm.selbgcolor: c05
 dwm.selfgcolor: fg
 
 !! dmenu settings
-dmenu.normbordercolor: c05
+dmenu.normbordercolor: c12
 dmenu.normbgcolor: bg
 dmenu.normfgcolor: fg
-dmenu.selbordercolor: c05
-dmenu.selbgcolor: c05
-dmenu.selfgcolor: fg
+dmenu.selbordercolor: c12
+dmenu.selbgcolor: c12
+dmenu.selfgcolor: bg
