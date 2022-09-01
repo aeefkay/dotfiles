@@ -7,8 +7,8 @@
 
 # AwesomeWM dependancies
 st
-Nitrogen 
-JetbrainsMono Nerd Font
+feh
+dmenu
 
 # LeftWM dependancies
 st
