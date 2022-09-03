@@ -1,6 +1,7 @@
- #include "/home/afk/.config/themes/cyberpunk"
+!! #include "/home/afk/.config/themes/cyberpunk"
 !! #include "/home/afk/.config/themes/Dracula"
 !! #include "/home/afk/.config/themes/adwaita-dark"
+ #include "/home/afk/.config/themes/Arc-Dark"
 
 !! xterm settings
 xterm*faceName: monospace
