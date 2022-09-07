@@ -54,4 +54,6 @@ exec lxsession &
 exec feh --bg-fill ~/wallpaper/21-9/20.png ~/wallpaper/9-16/20.png &
 exec slstatus &
 exec volumeicon &
+#exec awesome
+#exec icewm
 exec dwm
