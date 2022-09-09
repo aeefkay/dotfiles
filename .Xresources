@@ -2,6 +2,7 @@
 !! #include "/home/afk/.config/themes/Dracula"
 !! #include "/home/afk/.config/themes/adwaita-dark"
  #include "/home/afk/.config/themes/Arc-Dark"
+!! #include "/home/afk/.config/themes/Endeavour"
 
 !! xterm settings
 xterm*faceName: monospace
